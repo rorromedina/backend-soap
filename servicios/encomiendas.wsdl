@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="EncomiendasService"
+  targetNamespace="http://encomiendas.soap.cl/wsdl"
+  xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:tns="http://encomiendas.soap.cl/wsdl"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <types>
+    <xsd:schema targetNamespace="http://encomiendas.soap.cl/wsdl">
+      <!-- LOGIN -->
+      <xsd:element name="LoginRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="claveVpn" type="xsd:string"/>
+            <xsd:element name="username" type="xsd:string"/>
+            <xsd:element name="password" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="LoginResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="exito" type="xsd:boolean"/>
+            <xsd:element name="mensaje" type="xsd:string"/>
+            <xsd:element name="nombre" type="xsd:string"/>
+            <xsd:element name="rol" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <!-- TERRITORIOS -->
+      <xsd:element name="AgregarTerritorioRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="claveVpn" type="xsd:string"/>
+            <xsd:element name="region" type="xsd:string"/>
+            <xsd:element name="provincia" type="xsd:string"/>
+            <xsd:element name="comuna" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AgregarTerritorioResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="exito" type="xsd:boolean"/>
+            <xsd:element name="mensaje" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="ListarTerritoriosRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="claveVpn" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ListarTerritoriosResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="territoriosJson" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="EliminarTerritorioRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="claveVpn" type="xsd:string"/>
+            <xsd:element name="id" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="EliminarTerritorioResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="exito" type="xsd:boolean"/>
+            <xsd:element name="mensaje" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <!-- ENCOMIENDAS -->
+      <xsd:element name="CrearEncomiendaRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="claveVpn" type="xsd:string"/>
+            <xsd:element name="clienteUsername" type="xsd:string"/>
+            <xsd:element name="comunaOrigen" type="xsd:string"/>
+            <xsd:element name="comunaDestino" type="xsd:string"/>
+            <xsd:element name="descripcion" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CrearEncomiendaResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="exito" type="xsd:boolean"/>
+            <xsd:element name="mensaje" type="xsd:string"/>
+            <xsd:element name="codigoSeguimiento" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="ListarEncomiendasRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="claveVpn" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ListarEncomiendasResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="encomiendasJson" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="ActualizarEstadoRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="claveVpn" type="xsd:string"/>
+            <xsd:element name="codigoSeguimiento" type="xsd:string"/>
+            <xsd:element name="nuevoEstado" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ActualizarEstadoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="exito" type="xsd:boolean"/>
+            <xsd:element name="mensaje" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+
+  <message name="LoginInput"><part name="parameters" element="tns:LoginRequest"/></message>
+  <message name="LoginOutput"><part name="parameters" element="tns:LoginResponse"/></message>
+  <message name="AgregarTerritorioInput"><part name="parameters" element="tns:AgregarTerritorioRequest"/></message>
+  <message name="AgregarTerritorioOutput"><part name="parameters" element="tns:AgregarTerritorioResponse"/></message>
+  <message name="ListarTerritoriosInput"><part name="parameters" element="tns:ListarTerritoriosRequest"/></message>
+  <message name="ListarTerritoriosOutput"><part name="parameters" element="tns:ListarTerritoriosResponse"/></message>
+  <message name="EliminarTerritorioInput"><part name="parameters" element="tns:EliminarTerritorioRequest"/></message>
+  <message name="EliminarTerritorioOutput"><part name="parameters" element="tns:EliminarTerritorioResponse"/></message>
+  <message name="CrearEncomiendaInput"><part name="parameters" element="tns:CrearEncomiendaRequest"/></message>
+  <message name="CrearEncomiendaOutput"><part name="parameters" element="tns:CrearEncomiendaResponse"/></message>
+  <message name="ListarEncomiendasInput"><part name="parameters" element="tns:ListarEncomiendasRequest"/></message>
+  <message name="ListarEncomiendasOutput"><part name="parameters" element="tns:ListarEncomiendasResponse"/></message>
+  <message name="ActualizarEstadoInput"><part name="parameters" element="tns:ActualizarEstadoRequest"/></message>
+  <message name="ActualizarEstadoOutput"><part name="parameters" element="tns:ActualizarEstadoResponse"/></message>
+
+  <portType name="EncomiendasPortType">
+    <operation name="Login"><input message="tns:LoginInput"/><output message="tns:LoginOutput"/></operation>
+    <operation name="AgregarTerritorio"><input message="tns:AgregarTerritorioInput"/><output message="tns:AgregarTerritorioOutput"/></operation>
+    <operation name="ListarTerritorios"><input message="tns:ListarTerritoriosInput"/><output message="tns:ListarTerritoriosOutput"/></operation>
+    <operation name="EliminarTerritorio"><input message="tns:EliminarTerritorioInput"/><output message="tns:EliminarTerritorioOutput"/></operation>
+    <operation name="CrearEncomienda"><input message="tns:CrearEncomiendaInput"/><output message="tns:CrearEncomiendaOutput"/></operation>
+    <operation name="ListarEncomiendas"><input message="tns:ListarEncomiendasInput"/><output message="tns:ListarEncomiendasOutput"/></operation>
+    <operation name="ActualizarEstado"><input message="tns:ActualizarEstadoInput"/><output message="tns:ActualizarEstadoOutput"/></operation>
+  </portType>
+
+  <binding name="EncomiendasBinding" type="tns:EncomiendasPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="Login"><soap:operation soapAction="Login"/><input><soap:body use="literal"/></input><output><soap:body use="literal"/></output></operation>
+    <operation name="AgregarTerritorio"><soap:operation soapAction="AgregarTerritorio"/><input><soap:body use="literal"/></input><output><soap:body use="literal"/></output></operation>
+    <operation name="ListarTerritorios"><soap:operation soapAction="ListarTerritorios"/><input><soap:body use="literal"/></input><output><soap:body use="literal"/></output></operation>
+    <operation name="EliminarTerritorio"><soap:operation soapAction="EliminarTerritorio"/><input><soap:body use="literal"/></input><output><soap:body use="literal"/></output></operation>
+    <operation name="CrearEncomienda"><soap:operation soapAction="CrearEncomienda"/><input><soap:body use="literal"/></input><output><soap:body use="literal"/></output></operation>
+    <operation name="ListarEncomiendas"><soap:operation soapAction="ListarEncomiendas"/><input><soap:body use="literal"/></input><output><soap:body use="literal"/></output></operation>
+    <operation name="ActualizarEstado"><soap:operation soapAction="ActualizarEstado"/><input><soap:body use="literal"/></input><output><soap:body use="literal"/></output></operation>
+  </binding>
+
+  <service name="EncomiendasService">
+    <port name="EncomiendasPort" binding="tns:EncomiendasBinding">
+      <soap:address location="http://localhost:3000/wsdl"/>
+    </port>
+  </service>
+</definitions>
